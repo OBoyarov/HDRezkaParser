@@ -9,13 +9,13 @@ class Telegram {
         $this->admin = TG_ADMIN;
     }
 
-    function sendMessage($text, $reply_markup = '', $code = false):string {
+    function sendMessage($text, $reply_markup = "", $code = false):string {
         if ($code == true) {$text = "<code>$text</code>";}
-        return $this->postRequest('sendMessage', $this->token, ['chat_id' => $this->admin, 'text' => $text, 'reply_markup' => $reply_markup, 'parse_mode' => 'HTML']);
+        return $this->postRequest("sendMessage", $this->token, ["chat_id" => $this->admin, "text" => $text, "reply_markup" => $reply_markup, "parse_mode" => "HTML"]);
     }
 
     function deleteMessage($chat_id, $message_id):string {
-        return $this->postRequest('deleteMessage', $this->token, ['chat_id' => $chat_id, 'message_id' => $message_id]);
+        return $this->postRequest("deleteMessage", $this->token, ["chat_id" => $chat_id, "message_id" => $message_id]);
     }
 
     private function postRequest($method, $token, $data):string {
