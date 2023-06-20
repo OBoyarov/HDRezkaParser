@@ -24,9 +24,8 @@ class MySQL {
         $stmt->execute($array);
         if (isset($stmt) and $stmt->rowCount() > 0) {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            return array();
         }
+        return array();
     }
 
     function changeData($query, $array = []):array {
