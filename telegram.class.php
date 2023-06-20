@@ -9,9 +9,9 @@ class Telegram {
         $this->admin = TG_ADMIN;
     }
 
-    function sendMessage($chat_id, $text, $reply_markup = '', $code = false):string {
+    function sendMessage($text, $reply_markup = '', $code = false):string {
         if ($code == true) {$text = "<code>$text</code>";}
-        return $this->postRequest('sendMessage', $this->token, ['chat_id' => $chat_id, 'text' => $text, 'reply_markup' => $reply_markup, 'parse_mode' => 'HTML']);
+        return $this->postRequest('sendMessage', $this->token, ['chat_id' => $this->admin, 'text' => $text, 'reply_markup' => $reply_markup, 'parse_mode' => 'HTML']);
     }
 
     function deleteMessage($chat_id, $message_id):string {
@@ -19,6 +19,10 @@ class Telegram {
     }
 
     private function postRequest($method, $token, $data):string {
+        if(!TG_USE) {
+            echo "Отправка в telegram отключен, проверьте переменную TG_USE!";
+            return "";
+        }
         $ch = curl_init();
         $ch_post = [
             CURLOPT_URL => "https://api.telegram.org/bot$token/$method",
