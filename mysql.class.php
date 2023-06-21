@@ -30,9 +30,7 @@ class MySQL {
 
     function changeData($query, $array = []):array {
         $stmt = $this->db_obj->prepare($query);
-        if (!$stmt->execute($array)){
-            $stmt->errorInfo();
-        }
+        $stmt->execute($array);
         return array();
     }
 
