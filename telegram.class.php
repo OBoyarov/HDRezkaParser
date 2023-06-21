@@ -19,10 +19,7 @@ class Telegram {
     }
 
     private function postRequest($method, $token, $data):string {
-        if(!TG_USE) {
-            echo "Отправка в telegram отключен, проверьте переменную TG_USE!";
-            return "";
-        }
+        if(!TG_USE) {return "";}
         $ch = curl_init();
         $ch_post = [
             CURLOPT_URL => "https://api.telegram.org/bot$token/$method",
