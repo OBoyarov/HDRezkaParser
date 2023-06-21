@@ -12,7 +12,7 @@ if (PR_FLOCK_USE) {
 }
 
 if ($_SERVER["argc"] > 1) {
-    $task = $_SERVER["argv"][1]; //При передаче аргумента c сервера, ex. CRON with CLI: /www/php/7.4/bin/php -f /www/username/domain.tld/app.php check_new_items
+    $task = $_SERVER["argv"][1]; //При передаче аргумента c сервера, ex. CRON with CLI: /opt/php/7.4/bin/php -f /var/www/username/data/www/domain.tld/app.php check_new_items
 } else {
     $task = "check_new_items"; //При локальной проверке
 }
